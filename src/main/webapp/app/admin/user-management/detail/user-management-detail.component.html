@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (user) {
+      <div>
+        <h2>
+          <span jhiTranslate="userManagement.detail.title">Kullanıcı</span> [<strong>{{ user.login }}</strong
+          >]
+        </h2>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="userManagement.login">Giriş</span></dt>
+          <dd>
+            <span>{{ user.login }}</span>
+            @if (user.activated) {
+              <span class="badge bg-success" jhiTranslate="userManagement.activated">Aktif</span>
+            } @else {
+              <span class="badge bg-danger" jhiTranslate="userManagement.deactivated">Deaktif</span>
+            }
+          </dd>
+
+          <dt><span jhiTranslate="userManagement.firstName">Ad</span></dt>
+          <dd>{{ user.firstName }}</dd>
+
+          <dt><span jhiTranslate="userManagement.lastName">Soyad</span></dt>
+          <dd>{{ user.lastName }}</dd>
+
+          <dt><span jhiTranslate="userManagement.email">Eposta</span></dt>
+          <dd>{{ user.email }}</dd>
+
+          <dt><span jhiTranslate="userManagement.langKey">Dil</span></dt>
+          <dd>{{ user.langKey }}</dd>
+
+          <dt><span jhiTranslate="userManagement.createdBy">Oluşturan</span></dt>
+          <dd>{{ user.createdBy }}</dd>
+
+          <dt><span jhiTranslate="userManagement.createdDate">Oluşturma tarihi</span></dt>
+          <dd>{{ user.createdDate | date: 'dd/MM/yy HH:mm' }}</dd>
+
+          <dt><span jhiTranslate="userManagement.lastModifiedBy">Düzenleyen</span></dt>
+          <dd>{{ user.lastModifiedBy }}</dd>
+
+          <dt><span jhiTranslate="userManagement.lastModifiedDate">Düzenleme tarihi</span></dt>
+          <dd>{{ user.lastModifiedDate | date: 'dd/MM/yy HH:mm' }}</dd>
+
+          <dt><span jhiTranslate="userManagement.profiles">Roller</span></dt>
+          <dd>
+            <ul class="list-unstyled">
+              @for (authority of user.authorities; track $index) {
+                <li>
+                  <span class="badge bg-info">{{ authority }}</span>
+                </li>
+              }
+            </ul>
+          </dd>
+        </dl>
+
+        <button type="submit" routerLink="../../" class="btn btn-info">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Geri</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
